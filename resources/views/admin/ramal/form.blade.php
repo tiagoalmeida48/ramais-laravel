@@ -19,7 +19,7 @@
                                 <select name="empresa_id" id="empresa_id_select">
                                     <option value="" disabled selected>Selecione uma empresa</option>
                                     @foreach($empresas as $item)
-                                        <option value="{{$item->id}}" {{ (old('empresa_id') != null && old('empresa_id') == $item->id) || ($ramal != null && $ramal['empresa_id'] == $item->id) ? "selected" : "" }}>{{$item->nome}}</option>
+                                        <option value="{{$item->id}}" {{ (old('empresa_id') != null && old('empresa_id') == $item->id)? "selected" : "" }}>{{$item->nome}}</option>
                                     @endforeach
                                 </select>
                                 <label for="empresa_id">Empresa</label>
@@ -31,7 +31,7 @@
                                 <select name="setor_id" id="setor_id_select">
                                     <option value="" disabled selected>Selecione um setor</option>
                                         @foreach($setores as $item)
-                                            <option value="{{$item->id}}" {{ (old('setor_id') != null && old('setor_id') == $item->id) || ($ramal != null && $ramal['setor_id'] == $item->id) ? "selected" : "" }}>{{$item->nome}}</option>
+                                            <option value="{{$item->id}}" {{ (old('setor_id') != null && old('setor_id') == $item->id) ? "selected" : "" }}>{{$item->nome}}</option>
                                         @endforeach
                                 </select>
                                 <label for="setor_id">Setor</label>
