@@ -1,0 +1,12 @@
+.text-center {
+    text-align: center;
+}
+
+.invalid-feedback {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #ccc;
+    padding-left: 5px;
+}
