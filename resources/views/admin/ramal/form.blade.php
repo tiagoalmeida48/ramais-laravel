@@ -49,14 +49,14 @@
                         </div>
                         <div class="row">
                             <div class="input-field col l6 s12">
-                                <input type="text" id="telefone_externo" name="telefone_externo" value="{{Route::current()->getName() == 'ramal.create' ? null : $ramal->telefone_externo}}{{old('telefone_externo')}}" class="validate">
+                                <input type="text" id="telefone_externo" name="telefone_externo" value="{{old('telefone_externo') ?? $ramal->telefone_externo}}" class="validate">
                                 <label for="telefone_externo">Telefone externo</label>
                                 @error('telefone_externo')
                                     <div class="invalid-feedback">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="input-field col l6 s12">
-                                <input type="text" id="nome_maquina" name="nome_maquina" value="{{Route::current()->getName() == 'ramal.create' ? null : $ramal->nome_maquina}}{{old('nome_maquina')}}" class="validate">
+                                <input type="text" id="nome_maquina" name="nome_maquina" value="{{old('nome_maquina') ?? $ramal->nome_maquina}}" class="validate">
                                 <label for="nome_maquina">Nome do computador</label>
                                 @error('nome_maquina')
                                     <div class="invalid-feedback">{{$message}}</div>
