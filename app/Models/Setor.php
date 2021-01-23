@@ -9,4 +9,9 @@ class Setor extends Model
 {
     use HasFactory;
     protected $table = 'setores';
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
 }

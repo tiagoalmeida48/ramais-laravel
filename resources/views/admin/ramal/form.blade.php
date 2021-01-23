@@ -6,7 +6,7 @@
             <div class="card-content">
                 <h4 class="text-center">Cadastro de Ramais</h4>
                 <div class="divider"></div>
-                <form action="{{Route::current()->getName() == 'ramal.create' ? route('ramal.store') : route('ramal.update', $ramal->id)}}" method="post">
+                <form action="{{(Route::current()->getName() == 'ramal.create') ? route('ramal.store') : route('ramal.update', $ramal->id)}}" method="post">
                     @csrf
                     @if(Route::current()->getName() == "ramal.edit") @method('PUT') @endif
 
@@ -19,7 +19,7 @@
                                 <select name="empresa_id" id="empresa_id_select">
                                     <option value="" disabled selected>Selecione uma empresa</option>
                                     @foreach($empresas as $item)
-                                        <option value="{{$item->id}}" {{ (old('empresa_id') != null && old('empresa_id') == $item->id)? "selected" : "" }}>{{$item->nome}}</option>
+                                        <option value="{{$item->id}}" {{($ramal->empresa->id == $item->id) ? 'selected' : ''}}>{{$item->nome}}</option>
                                     @endforeach
                                 </select>
                                 <label for="empresa_id">Empresa</label>
@@ -31,7 +31,7 @@
                                 <select name="setor_id" id="setor_id_select">
                                     <option value="" disabled selected>Selecione um setor</option>
                                         @foreach($setores as $item)
-                                            <option value="{{$item->id}}" {{ (old('setor_id') != null && old('setor_id') == $item->id) ? "selected" : "" }}>{{$item->nome}}</option>
+                                            <option value="{{old('setor_id') ?? $item->id}}" {{($item->id == $ramal->setor->id) ? 'selected' : ''}}>{{$item->nome}}</option>
                                         @endforeach
                                 </select>
                                 <label for="setor_id">Setor</label>
@@ -40,7 +40,7 @@
                                 @enderror
                             </div>
                             <div class="input-field col l4 s12">
-                                <input type="text" id="ramal" name="ramal" value="{{Route::current()->getName() == 'ramal.create' ? null : $ramal->ramal}}{{old('ramal')}}" class="validate">
+                                <input type="text" id="ramal" name="ramal" value="{{old('ramal') ?? $ramal->ramal}}" class="validate">
                                 <label for="ramal">Ramal</label>
                                 @error('ramal')
                                     <div class="invalid-feedback">{{$message}}</div>

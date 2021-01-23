@@ -6,7 +6,7 @@ $(function() {
 
     $('#empresa_id_select').on('change', function(e) {
         $.ajax({
-            url: 'ajax-setor/' + e.target.value,
+            url: '/ajax-setor/' + e.target.value,
             type: 'GET',
             dataType: 'json',
             success: function(data) {

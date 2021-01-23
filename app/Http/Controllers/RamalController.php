@@ -50,7 +50,7 @@ class RamalController extends Controller
     public function store(SaveUpdateRamal $request)
     {
         Validator::make($request->all());
-        
+
         Ramal::create($request->all());
         return redirect()->route('ramal.index')->with('message','Ramal salvo com sucesso!');
     }
@@ -76,8 +76,8 @@ class RamalController extends Controller
     {
         $empresas = Empresa::all();
         $ramal = Ramal::find($id);
-        $setores = Setor::where('empresa_id', $ramal['setor_id'])->get();
-        return view("admin.ramal.form", ["ramal" => $ramal, "empresas" => $empresas, 'setores' => $setores]);
+        $setores = Setor::where('empresa_id', $ramal->empresa->id)->get();
+        return view("admin.ramal.form", compact('empresas', 'ramal', 'setores'));
     }
 
     /**
@@ -86,8 +86,9 @@ class RamalController extends Controller
      * @param  \App\Models\Ramal  $ramal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, SaveUpdateRamal $request)
     {
+        Validator::make($request->all());
         $ramal = Ramal::find($id);
         $ramal->update($request->all());
         return redirect()->route('ramal.index');

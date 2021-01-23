@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('ramal', RamalController::class)->parameter('ramal', 'id');
-Route::get('ramal/ajax-setor/{id}', [RamalController::class, "ajaxSetor"]);
+Route::get('ajax-setor/{id}', [RamalController::class, "ajaxSetor"]);

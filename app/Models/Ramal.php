@@ -16,4 +16,14 @@ class Ramal extends Model
     protected $fillable = ['usuario_id','empresa_id','setor_id','ramal','telefone_externo','nome_maquina'];
 
     use SoftDeletes;
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
+
+    public function setor()
+    {
+        return $this->belongsTo(Setor::class);
+    }
 }

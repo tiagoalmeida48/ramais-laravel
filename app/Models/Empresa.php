@@ -9,4 +9,14 @@ class Empresa extends Model
 {
     use HasFactory;
     protected $table = 'empresas';
+
+    public function ramais()
+    {
+        return $this->hasMany(Ramal::class);
+    }
+
+    public function setores()
+    {
+        return $this->hasMany(Setor::class);
+    }
 }
