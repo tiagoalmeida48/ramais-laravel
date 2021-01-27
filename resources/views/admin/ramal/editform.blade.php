@@ -4,13 +4,13 @@
     <div class="container">
         <div class="card">
             <div class="card-content">
-                <h4 class="text-center">Cadastro de Ramais</h4>
+                <h4 class="text-center">Editar Ramais</h4>
                 <div class="divider"></div>
-                <form action="{{Route::current()->getName() == 'ramal.create' ? route('ramal.store') : route('ramal.update', $ramal->id)}}" method="post">
+                <form action="{{route('ramal.update', $ramal->id)}}" method="post">
                     @csrf
-                    @if(Route::current()->getName() == "ramal.edit") @method('PUT') @endif
+                    @method('PUT')
 
-                    <input type="hidden" name="usuario_id" value="{{Route::current()->getName() == 'ramal.create' ? 1 : $ramal->usuario_id}}">
+                    <input type="hidden" name="usuario_id" value="{{$ramal->usuario_id}}">
                     <input type="hidden" name="visivel" value="S">
 
                     <div class="card-body">
@@ -19,7 +19,7 @@
                                 <select name="empresa_id" id="empresa_id_select">
                                     <option value="" disabled selected>Selecione uma empresa</option>
                                     @foreach($empresas as $item)
-                                        <option value="{{old('setor_id') ?? $item->id}}" {{ (old('empresa_id') || $item->id == $ramal->empresa->id) ? "selected" : "" }}>{{$item->nome}}</option>
+                                        <option value="{{$item->id}}" {{old('empresa_id', $item->id) || ($ramal->empresa->id == $item->id) ? 'selected' : ''}}>{{$item->nome}}</option>
                                     @endforeach
                                 </select>
                                 <label for="empresa_id">Empresa</label>
@@ -31,7 +31,7 @@
                                 <select name="setor_id" id="setor_id_select">
                                     <option value="" disabled selected>Selecione um setor</option>
                                         @foreach($setores as $item)
-                                            <option value="{{old('setor_id') ?? $item->id}}" {{ (old('setor_id') || $ramal->setor->id == $item->id) ? "selected" : "" }}>{{$item->nome}}</option>
+                                            <option value="{{$item->id}}" {{old('setor_id', $item->id) || ($item->id == $ramal->setor->id) ? 'selected' : ''}}>{{$item->nome}}</option>
                                         @endforeach
                                 </select>
                                 <label for="setor_id">Setor</label>

@@ -3,5 +3,8 @@
     "/assets/js/jquery.js": "/assets/js/jquery.js",
     "/assets/js/script.js": "/assets/js/script.js",
     "/assets/js/materialize.js": "/assets/js/materialize.js",
-    "/assets/css/styles.css": "/assets/css/styles.css"
+    "/assets/js/jquery.datatable.js": "/assets/js/jquery.datatable.js",
+    "/assets/js/datatable.js": "/assets/js/datatable.js",
+    "/assets/css/styles.css": "/assets/css/styles.css",
+    "/assets/css/datatable.css": "/assets/css/datatable.css"
 }

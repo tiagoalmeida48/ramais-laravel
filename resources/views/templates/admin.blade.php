@@ -48,7 +48,7 @@
     </footer>
     <!-- Scripts -->
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/materialize.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 </html>

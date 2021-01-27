@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SaveUpdateRamal extends FormRequest
@@ -23,11 +24,13 @@ class SaveUpdateRamal extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route()->parameter('id');
+
         return [
             "empresa_id" => "required",
             "setor_id" => "required",
             "ramal" => "required",
-            "nome_maquina" => "required|unique:ramais"
+            "nome_maquina" => "required|unique:ramais,nome_maquina,".$id
         ];
     }
 }

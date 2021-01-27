@@ -6,10 +6,7 @@ use App\Http\Requests\SaveUpdateRamal;
 use App\Models\Empresa;
 use App\Models\Ramal;
 use App\Models\Setor;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
 
 class RamalController extends Controller
 {
@@ -36,9 +33,8 @@ class RamalController extends Controller
     public function create(Request $request)
     {
         $empresas = Empresa::all();
-        $id = $request->old('empresa_id');
-        $setores = Setor::where('empresa_id', $id)->get();
-        return view("admin.ramal.form", ['empresas' => $empresas, 'setores' => $setores]);
+        $setores = Setor::where('empresa_id', old('empresa_id'))->get();
+        return view("admin.ramal.createform", compact('empresas', 'setores'));
     }
 
     /**
@@ -49,7 +45,7 @@ class RamalController extends Controller
      */
     public function store(SaveUpdateRamal $request)
     {
-        Validator::make($request->all());
+        $request->validated();
 
         Ramal::create($request->all());
         return redirect()->route('ramal.index')->with('message','Ramal salvo com sucesso!');
@@ -77,7 +73,7 @@ class RamalController extends Controller
         $empresas = Empresa::all();
         $ramal = Ramal::find($id);
         $setores = Setor::where('empresa_id', $ramal->empresa->id)->get();
-        return view("admin.ramal.form", compact('empresas', 'ramal', 'setores'));
+        return view("admin.ramal.editform", compact('empresas', 'ramal', 'setores'));
     }
 
     /**
@@ -88,7 +84,7 @@ class RamalController extends Controller
      */
     public function update($id, SaveUpdateRamal $request)
     {
-        Validator::make($request->all());
+        $request->validated();
         $ramal = Ramal::find($id);
         $ramal->update($request->all());
         return redirect()->route('ramal.index');

@@ -4,14 +4,13 @@
     <div class="container">
         <div class="card">
             <div class="card-content">
-                <h4 class="text-center">Cadastro de Ramais</h4>
+                <h4 class="text-center">Cadastrar Ramais</h4>
                 <div class="divider"></div>
-                <form action="{{Route::current()->getName() == 'ramal.create' ? route('ramal.store') : route('ramal.update', $ramal->id)}}" method="post">
+                <form action="{{route('ramal.store')}}" method="post">
                     @csrf
-                    @if(Route::current()->getName() == "ramal.edit") @method('PUT') @endif
 
-                    <input type="hidden" name="usuario_id" value="{{Route::current()->getName() == 'ramal.create' ? 1 : $ramal->usuario_id}}">
                     <input type="hidden" name="visivel" value="S">
+                    <input type="hidden" name="usuario_id" value="1">
 
                     <div class="card-body">
                         <div class="row">
@@ -19,7 +18,7 @@
                                 <select name="empresa_id" id="empresa_id_select">
                                     <option value="" disabled selected>Selecione uma empresa</option>
                                     @foreach($empresas as $item)
-                                        <option value="{{old('setor_id') ?? $item->id}}" {{ (old('empresa_id') || $item->id == $ramal->empresa->id) ? "selected" : "" }}>{{$item->nome}}</option>
+                                        <option value="{{$item->id}}" {{old('empresa_id') == $item->id ? 'selected' : null}}>{{$item->nome}}</option>
                                     @endforeach
                                 </select>
                                 <label for="empresa_id">Empresa</label>
@@ -31,8 +30,8 @@
                                 <select name="setor_id" id="setor_id_select">
                                     <option value="" disabled selected>Selecione um setor</option>
                                         @foreach($setores as $item)
-                                            <option value="{{old('setor_id') ?? $item->id}}" {{ (old('setor_id') || $ramal->setor->id == $item->id) ? "selected" : "" }}>{{$item->nome}}</option>
-                                        @endforeach
+                                        <option value="{{$item->id}}" {{($item->id == old('setor_id')) ? 'selected' : ''}}>{{$item->nome}}</option>
+                                    @endforeach
                                 </select>
                                 <label for="setor_id">Setor</label>
                                 @error('setor_id')
@@ -40,7 +39,7 @@
                                 @enderror
                             </div>
                             <div class="input-field col l4 s12">
-                                <input type="text" id="ramal" name="ramal" value="{{old('ramal') ?? $ramal->ramal}}" class="validate">
+                                <input type="text" id="ramal" name="ramal" value="{{old('ramal')}}" class="validate">
                                 <label for="ramal">Ramal</label>
                                 @error('ramal')
                                     <div class="invalid-feedback">{{$message}}</div>
@@ -49,14 +48,14 @@
                         </div>
                         <div class="row">
                             <div class="input-field col l6 s12">
-                                <input type="text" id="telefone_externo" name="telefone_externo" value="{{old('telefone_externo') ?? $ramal->telefone_externo}}" class="validate">
+                                <input type="text" id="telefone_externo" name="telefone_externo" value="{{old('telefone_externo')}}" class="validate">
                                 <label for="telefone_externo">Telefone externo</label>
                                 @error('telefone_externo')
                                     <div class="invalid-feedback">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="input-field col l6 s12">
-                                <input type="text" id="nome_maquina" name="nome_maquina" value="{{old('nome_maquina') ?? $ramal->nome_maquina}}" class="validate">
+                                <input type="text" id="nome_maquina" name="nome_maquina" value="{{old('nome_maquina')}}" class="validate">
                                 <label for="nome_maquina">Nome do computador</label>
                                 @error('nome_maquina')
                                     <div class="invalid-feedback">{{$message}}</div>

@@ -1,10 +1,10 @@
 @extends('templates.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid visualizacao">
         <a href="{{route('ramal.create')}}" class="waves-effect waves-light btn-small">Criar</a>
 
-        <table class="striped highlight responsive-table centered">
+        <table class="display tabela">
             <thead>
                 <tr>
                     <th>Empresa</th>
@@ -28,8 +28,8 @@
                         <td>{{$item->nome_maquina}}</td>
                         <td>{{$item->email}}</td>
                         <td>
-                            <a href="{{route('ramal.edit', $item->id)}}" class="btn btn-sm btn-outline-info">Editar</a>
-                            <a href="#modal{{$item->id}}" class="waves-effect waves-light btn modal-trigger">Excluir</a>
+                            <a href="{{route('ramal.edit', $item->id)}}" class="waves-effect waves-light btn-small orange"><i class="material-icons">edit</i></a>
+                            <a href="#modal{{$item->id}}" class="waves-effect waves-light btn-small red modal-trigger"><i class="material-icons">delete</i></a>
 
                             <div id="modal{{$item->id}}" class="modal">
                                 <div class="modal-content">
